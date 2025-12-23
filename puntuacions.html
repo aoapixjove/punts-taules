@@ -113,11 +113,12 @@
       opacity: 0.5;
     }
 
-    .pirate-flag {
+    .car {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 32px; /* Mida gran per a banderes pirates */
+      font-size: 24px;
+      transition: left 2s ease-in-out;
     }
 
     .points {
@@ -152,7 +153,7 @@
       }
     }
 
-    /* Canvi de l'icona */
+    /* Noves icones */
     .pirate-flag {
       font-size: 32px;
       color: #000;
@@ -222,7 +223,7 @@
         const trackContainer = document.createElement("div");
         trackContainer.className = "track-container";
 
-        // Substituïm el cotxe per una bandera pirata
+        // 🏴‍☠️ Aquí canviem el cotxe per una bandera pirata
         const pirateFlag = document.createElement("i");
         pirateFlag.className = "fas fa-flag pirate-flag";
         trackContainer.appendChild(pirateFlag);
@@ -270,4 +271,3 @@
   </script>
 </body>
 </html>
-
