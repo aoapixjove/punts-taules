@@ -14,7 +14,7 @@
       color: #111;
     }
 
-    /* 🏁 Banderola superior */
+    /* 🏴‍☠️ Banderola superior */
     .banner {
       width: 100%;
       height: 20px;
@@ -94,7 +94,7 @@
       overflow: hidden;
     }
 
-    /* 🏁 Línia de meta */
+    /* 🏴‍☠️ Línia de meta */
     .track-container::after {
       content: "";
       position: absolute;
@@ -164,19 +164,18 @@
 
   <div class="banner"></div>
 
-  <h1>🏁 Rànquing de les puntuacions 🏁</h1>
+  <h1>🏴‍☠️ Puntuacions 🏴‍☠️</h1>
 
   <h2 id="groupTitle">Puntuacions</h2>
-  <button onclick="startRace()">🏴‍☠️ Començar cursa</button>
+  <button onclick="startRace()">🏴‍☠️ Actualitzar puntuacions</button>
 
   <div id="lanes"></div>
 
   <script>
     const sheetUrls = {
-      MENUTS: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1MwDaHPQf9Ce5u9RDG0dRzbhtdPN3aIwKe6le7MSoox8C_-6Gf2k-MfI-eNx4OpTiaraqfwyS7pb9/pub?output=csv',
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1MwDaHPQf9Ce5u9RDG0dRzbhtdPN3aIwKe6le7MSoox8C_-6Gf2k-MfI-eNx4OpTiaraqfwyS7pb9/pub?output=csv',
     };
-
-    let currentGroup = 'MENUTS';
+    
     let families = [];
 
     const lanesDiv = document.getElementById("lanes");
