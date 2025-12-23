@@ -221,16 +221,19 @@
       const maxPoints = Math.max(...families.map(f => f.points)) || 1;
       const tracks = document.querySelectorAll(".track-container");
 
-      // Reiniciar les posicions de les banderes abans d'animar-les
+      // Reiniciar les posicions de les banderes abans de l'animació
       document.querySelectorAll('.pirate-flag').forEach(flag => {
-        flag.style.left = '0%'; // Iniciar la posició de les banderes a 0%
+        flag.style.left = '0%'; // Reiniciar la posició a 0%
       });
 
-      tracks.forEach((track, index) => {
-        const pirateFlag = track.querySelector(".pirate-flag");
-        pirateFlag.style.transition = "left 2s ease-in-out"; // Animació suau de la cursa
-        pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`; // Asegurar que el primer es veu
-      });
+      // Retardar l'animació una mica per garantir que els elements es carreguen
+      setTimeout(() => {
+        tracks.forEach((track, index) => {
+          const pirateFlag = track.querySelector(".pirate-flag");
+          pirateFlag.style.transition = "left 2s ease-in-out"; // Animació suau de la cursa
+          pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`; // Moure la bandera segons la puntuació
+        });
+      }, 100); // Petita pausa abans d'animar
     }
 
     // Funció per iniciar la cursa i actualitzar resultats
