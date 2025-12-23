@@ -113,12 +113,12 @@
       opacity: 0.5;
     }
 
-    .car {
+    .pirate-flag {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 24px;
-      transition: left 2s ease-in-out;
+      font-size: 32px;
+      color: #000;
     }
 
     .points {
@@ -152,12 +152,6 @@
         opacity: 0;
       }
     }
-
-    /* Noves icones */
-    .pirate-flag {
-      font-size: 32px;
-      color: #000;
-    }
   </style>
 </head>
 <body>
@@ -170,16 +164,14 @@
   <div id="lanes"></div>
 
   <script>
-    const sheetUrls = {
-      'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1MwDaHPQf9Ce5u9RDG0dRzbhtdPN3aIwKe6le7MSoox8C_-6Gf2k-MfI-eNx4OpTiaraqfwyS7pb9/pub?output=csv',
-    };
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR1MwDaHPQf9Ce5u9RDG0dRzbhtdPN3aIwKe6le7MSoox8C_-6Gf2k-MfI-eNx4OpTiaraqfwyS7pb9/pub?output=csv';
     
     let families = [];
 
     const lanesDiv = document.getElementById("lanes");
 
+    // Càrrega de les famílies des de Google Sheets
     async function loadFamilies() {
-      const sheetUrl = sheetUrls[currentGroup];
       const resposta = await fetch(sheetUrl);
       const text = await resposta.text();
 
@@ -193,13 +185,14 @@
         };
       });
 
-      families.sort((a, b) => b.points - a.points);
+      families.sort((a, b) => b.points - a.points); // Ordenar per puntuació
 
-      createLanes(families);
+      createLanes(families); // Crear carrils amb els resultats
     }
 
+    // Crear els carrils amb les famílies
     function createLanes(families) {
-      lanesDiv.innerHTML = "";
+      lanesDiv.innerHTML = ""; // Esborrar contingut anterior
       families.forEach((fam, index) => {
         const lane = document.createElement("div");
         lane.className = "lane";
@@ -236,6 +229,7 @@
       });
     }
 
+    // Animar la cursa segons les puntuacions
     function animateRace() {
       const maxPoints = Math.max(...families.map(f => f.points)) || 1;
       const tracks = document.querySelectorAll(".track-container");
@@ -245,12 +239,14 @@
       });
     }
 
+    // Funció per iniciar la cursa i actualitzar resultats
     function startRace() {
       animateRace();
       launchConfetti();
-      document.querySelector("#groupTitle").textContent = "Actualitzant resultats...";
+      document.querySelector("#groupTitle").textContent = "Actualitzar resultats";
     }
 
+    // Confeti per afegir emoció
     function launchConfetti() {
       for (let i = 0; i < 50; i++) {
         const confetti = document.createElement("div");
@@ -264,7 +260,8 @@
     }
 
     loadFamilies();
-    setInterval(loadFamilies, 30000);
+    setInterval(loadFamilies, 30000); // Actualitzar cada 30 segons
   </script>
 </body>
 </html>
+
