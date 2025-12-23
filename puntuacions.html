@@ -191,7 +191,7 @@
       // les banderes ja comencen a 0, ara les mouem a la seva posició
       document.querySelectorAll(".track-container").forEach((track, index) => {
         const pirateFlag = track.querySelector(".pirate-flag");
-        pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`;
+        pirateFlag.style.left = `calc(${(families[index].points / maxPoints) * 100}% - 2rem)`;
       });
     }
 
