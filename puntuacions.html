@@ -46,9 +46,6 @@
     }
 
     /* Botons estil cursa */
-    #menu {
-      margin-bottom: 20px;
-    }
     button {
       margin: 6px;
       padding: 10px 16px;
@@ -155,6 +152,12 @@
         opacity: 0;
       }
     }
+
+    /* Noves icones */
+    .pirate-flag {
+      font-size: 32px;
+      color: #000;
+    }
   </style>
 </head>
 <body>
@@ -163,10 +166,8 @@
 
   <h1>🏁 Rànquing de les puntuacions 🏁</h1>
 
-  </div>
-
-  <h2 id="groupTitle">MENUTS</h2>
-  <button onclick="startRace()">🏎️ Començar cursa</button>
+  <h2 id="groupTitle">Puntuacions</h2>
+  <button onclick="startRace()">🏴‍☠️ Començar cursa</button>
 
   <div id="lanes"></div>
 
@@ -179,14 +180,6 @@
     let families = [];
 
     const lanesDiv = document.getElementById("lanes");
-
-    async function loadGroup(group) {
-      currentGroup = group;
-      document.getElementById("groupTitle").textContent = group;
-      document.querySelectorAll("#menu button").forEach(b => b.classList.remove("active"));
-      event.target.classList.add("active");
-      await loadFamilies();
-    }
 
     async function loadFamilies() {
       const sheetUrl = sheetUrls[currentGroup];
@@ -230,11 +223,10 @@
         const trackContainer = document.createElement("div");
         trackContainer.className = "track-container";
 
-        const car = document.createElement("i");
-        car.className = "fas fa-car car";
-        car.style.color = fam.color;
-        car.style.left = "0%";
-        trackContainer.appendChild(car);
+        // 🏴‍☠️ Aquí canviem el cotxe per una bandera pirata
+        const pirateFlag = document.createElement("i");
+        pirateFlag.className = "fas fa-flag pirate-flag";
+        trackContainer.appendChild(pirateFlag);
 
         const pointsDiv = document.createElement("div");
         pointsDiv.className = "points";
@@ -251,15 +243,15 @@
       const maxPoints = Math.max(...families.map(f => f.points)) || 1;
       const tracks = document.querySelectorAll(".track-container");
       tracks.forEach((track, index) => {
-        const car = track.querySelector(".car");
-        const fam = families[index];
-        car.style.left = `${(fam.points / maxPoints) * 100}%`;
+        const pirateFlag = track.querySelector(".pirate-flag");
+        pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`;
       });
     }
 
     function startRace() {
       animateRace();
       launchConfetti();
+      document.querySelector("#groupTitle").textContent = "Actualitzant resultats...";
     }
 
     function launchConfetti() {
