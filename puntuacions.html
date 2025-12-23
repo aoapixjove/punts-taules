@@ -104,7 +104,7 @@
       transform: translateY(-50%);
       font-size: 32px;
       color: #000;
-      transition: left 2s ease-in-out; /* Afegeixo la transició per fer la cursa més suau */
+      transition: left 2s ease-in-out; /* Animació de la cursa */
     }
 
     .points {
@@ -145,7 +145,6 @@
   <!-- Títol fixament situat a la part superior -->
   <div id="staticTitle">PUNTUACIONS</div>
 
-  <h1 id="groupTitle">PUNTUACIONS</h1>
   <button onclick="startRace()">🏴‍☠️ Actualitzar puntuacions</button>
 
   <div id="lanes"></div>
@@ -221,8 +220,15 @@
     function animateRace() {
       const maxPoints = Math.max(...families.map(f => f.points)) || 1;
       const tracks = document.querySelectorAll(".track-container");
+
+      // Reiniciar les posicions de les banderes abans d'animar-les
+      document.querySelectorAll('.pirate-flag').forEach(flag => {
+        flag.style.left = '0%'; // Iniciar la posició de les banderes a 0%
+      });
+
       tracks.forEach((track, index) => {
         const pirateFlag = track.querySelector(".pirate-flag");
+        pirateFlag.style.transition = "left 2s ease-in-out"; // Animació suau de la cursa
         pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`; // Asegurar que el primer es veu
       });
     }
