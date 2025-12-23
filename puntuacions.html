@@ -221,7 +221,7 @@
       const maxPoints = Math.max(...families.map(f => f.points)) || 1;
       const tracks = document.querySelectorAll(".track-container");
 
-      // Reiniciar les posicions de les banderes abans de l'animació
+      // Reiniciar les posicions de les banderes a 0% abans de començar l'animació
       document.querySelectorAll('.pirate-flag').forEach(flag => {
         flag.style.left = '0%'; // Reiniciar la posició a 0%
       });
