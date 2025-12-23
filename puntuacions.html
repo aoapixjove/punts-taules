@@ -14,11 +14,13 @@
       color: #111;
     }
 
-    h1 {
-      margin: 10px 0 20px 0;
-      color: #000;
+    /* Títol estàtic "PUNTUACIONS" */
+    #staticTitle {
+      font-size: 36px;
+      font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      margin-bottom: 30px;
+      color: #000;
     }
 
     #groupTitle {
@@ -48,10 +50,6 @@
       background-color: #000;
       color: #fff;
       transform: scale(1.05);
-    }
-    .active {
-      background-color: #000 !important;
-      color: #fff !important;
     }
 
     .lane {
@@ -106,6 +104,7 @@
       transform: translateY(-50%);
       font-size: 32px;
       color: #000;
+      transition: left 2s ease-in-out; /* Afegeixo la transició per fer la cursa més suau */
     }
 
     .points {
@@ -143,7 +142,9 @@
 </head>
 <body>
 
-  <!-- Eliminat el banner -->
+  <!-- Títol fixament situat a la part superior -->
+  <div id="staticTitle">PUNTUACIONS</div>
+
   <h1 id="groupTitle">PUNTUACIONS</h1>
   <button onclick="startRace()">🏴‍☠️ Actualitzar puntuacions</button>
 
@@ -222,7 +223,7 @@
       const tracks = document.querySelectorAll(".track-container");
       tracks.forEach((track, index) => {
         const pirateFlag = track.querySelector(".pirate-flag");
-        pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`;
+        pirateFlag.style.left = `${(families[index].points / maxPoints) * 100}%`; // Asegurar que el primer es veu
       });
     }
 
@@ -230,7 +231,7 @@
     function startRace() {
       animateRace();
       launchConfetti();
-      document.querySelector("#groupTitle").textContent = "Actualitzant resultats...";
+      location.reload(); // Actualitzar la pàgina (F5)
     }
 
     // Confeti per afegir emoció
