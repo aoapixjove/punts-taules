@@ -75,7 +75,7 @@
       font-size: 32px;
       color: #000;
       transition: left 2s ease-in-out;
-      left: 2%; /* Comencen totes a 0 */
+      left: 0%; /* Les banderes comencen a 0% */
     }
 
     .points {
@@ -144,7 +144,7 @@
       families.sort((a, b) => b.points - a.points);
 
       createLanes(families);
-      animateRace(); // <-- aquí la màgia que fa córrer les banderes!
+      animateRace(); // Aquí s'animen les banderes!
     }
 
     function createLanes(families) {
@@ -171,7 +171,7 @@
         const pirateFlag = document.createElement("i");
         pirateFlag.className = "fas fa-flag pirate-flag";
         pirateFlag.style.color = fam.color;
-        pirateFlag.style.left = `calc(${0}% + 2rem)`;  // totes comencen a 0!
+        pirateFlag.style.left = '0%';  // Les banderes comencen a 0%
         trackContainer.appendChild(pirateFlag);
 
         const pointsDiv = document.createElement("div");
@@ -188,10 +188,10 @@
     function animateRace() {
       const maxPoints = Math.max(...families.map(f => f.points)) || 1;
 
-      // les banderes ja comencen a 0, ara les mouem a la seva posició
+      // Les banderes comencen a 0%, i després es mouen a la seva posició basada en les puntuacions
       document.querySelectorAll(".track-container").forEach((track, index) => {
         const pirateFlag = track.querySelector(".pirate-flag");
-        pirateFlag.style.left = `calc(${(families[index].points / maxPoints) * 100}% - 2rem)`;
+        pirateFlag.style.left = `calc(${(families[index].points / maxPoints) * 100}% - 2rem)`;  // Movem la bandera en funció de la puntuació
       });
     }
 
